@@ -1,8 +1,8 @@
-from typing import TypedDict, NotRequired
+from typing import TypedDict, Optional
 from bson.objectid import ObjectId
 
 
 class User(TypedDict):
-    _id: NotRequired[ObjectId]
+    _id: Optional[ObjectId]
     username: str
     password: str

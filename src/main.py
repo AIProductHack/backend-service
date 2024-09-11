@@ -1,6 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
-from .api import (
+from api import (
     query,
     user,
 )
@@ -8,7 +8,7 @@ from .api import (
 app = FastAPI()
 
 app.include_router(query.router)
-app.include_router(user.router)
+# app.include_router(user.router)
 
 
 if __name__ == "__main__":
