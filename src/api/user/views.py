@@ -4,7 +4,7 @@ from .schemas import User
 router = APIRouter(prefix="/user", tags=["user"])
 
 
-@router.post("/create", status_code=204, response_model=User)
+@router.post("/create", status_code=201, response_model=User)
 def create(data):
     return {200: "ok"}
 
