@@ -1,5 +1,5 @@
 import os
-import httpx
+import requests
 from typing import Annotated
 from fastapi import (
     APIRouter,
@@ -14,14 +14,13 @@ router = APIRouter(prefix="/query", tags=["query"])
 
 @router.post("/text", status_code=200)
 async def accept_text(text: str):
-    async with httpx.AsyncClient() as client:
-        response = await client.post(f"{ML_API}/from_text?text={text}")
-        if response.status_code != 200:
-            raise HTTPException(
-                status_code=response.status_code,
-                detail=response.content
-            )
-        return response.json()
+    response = requests.post(f"{ML_API}/from_text?text={text}")
+    if response.status_code != 200:
+        raise HTTPException(
+            status_code=response.status_code,
+            detail=response.content
+        )
+    return response.json()
 
 
 @router.post("/audio", status_code=200)
