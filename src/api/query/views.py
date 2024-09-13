@@ -7,6 +7,7 @@ from fastapi import (
     HTTPException,
 )
 
+from api.query.crud import save_request
 from api.query.utils import parse_css, add_styles
 
 ML_API = os.getenv("ML_API") + "/generation"
@@ -28,6 +29,7 @@ async def accept_text(text: str):
         add_styles(result['data'], css)
     except Exception as e:
         print(e)
+    await save_request(text, result['data'], result['css'])
     return result
 
 
