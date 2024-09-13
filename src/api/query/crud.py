@@ -1,10 +1,7 @@
 import os
 from db.helpers import MongoHelper
-from db.models import Query
 
-db_helper = MongoHelper(os.getenv("MONGO_URL"))
+db_helper = MongoHelper(os.getenv("MONGO_URL"), 'logs_service')
 
-
-async def create_query()
-
-
+async def save_request(query, components, css):
+    await db_helper.insert(query, components, css)

@@ -25,9 +25,9 @@ async def accept_text(text: str):
 
 @router.post("/audio", status_code=200)
 async def accept_audio(file: Annotated[bytes, File()]):
-    raise HTTPException(418, detail="Audio support is not implemented yes")
+    raise HTTPException(418, detail="Audio support is not implemented yet")
 
 
 @router.post("/image", status_code=200)
 async def accept_image(file: Annotated[bytes, File()]):
-    raise HTTPException(418, detail="Image support is not implemented yes")
+    raise HTTPException(418, detail="Image support is not implemented yet")
