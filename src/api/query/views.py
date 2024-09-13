@@ -7,6 +7,8 @@ from fastapi import (
     HTTPException,
 )
 
+from api.query.utils import parse_css, add_styles
+
 ML_API = os.getenv("ML_API") + "/generation"
 
 router = APIRouter(prefix="/query", tags=["query"])
@@ -20,7 +22,13 @@ async def accept_text(text: str):
             status_code=response.status_code,
             detail=response.content
         )
-    return response.json()
+    result = response.json()
+    try:
+        css = parse_css(result['css'])
+        add_styles(result['data'], css)
+    except Exception as e:
+        print(e)
+    return result
 
 
 @router.post("/audio", status_code=200)
