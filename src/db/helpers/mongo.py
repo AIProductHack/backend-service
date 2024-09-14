@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-import uuid
 from datetime import datetime
 
 
@@ -10,7 +9,6 @@ class MongoHelper:
 
     def insert(self, query, components, css):
         item = {
-            '_id': uuid.uuid4(),
             'adding_time': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
             'user_query': query,
             'generated_components': components,

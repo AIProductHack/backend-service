@@ -24,11 +24,11 @@ async def accept_text(text: str):
             detail=response.content
         )
     result = response.json()
-    try:
-        css = parse_css(result['css'])
-        add_styles(result['data'], css)
-    except Exception as e:
-        print(e)
+    # try:
+    # css = parse_css(result['css'])
+    # add_styles(result['data'], css)
+    # except Exception as e:
+    # print(e)
     await save_request(text, result['data'], result['css'])
     return result
 
