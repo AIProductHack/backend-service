@@ -13,4 +13,4 @@ RUN poetry config virtualenvs.create false
 
 RUN poetry install
 
-CMD ["python", "src/main.py"]
+CMD ["python", "-u", "src/main.py"]
