@@ -1,3 +1,4 @@
+import enum
 import os
 import requests
 from typing import Annotated
@@ -15,9 +16,15 @@ ML_API = os.getenv("ML_API") + "/generation"
 router = APIRouter(prefix="/query", tags=["query"])
 
 
+class GeneratorType(str, enum.Enum):
+    CHATGPT = "chatgpt"
+    GIGACHAT = "gigachat"
+    YANDEXGPT = "yandexgpt"
+
+
 @router.post("/text", status_code=200)
-async def accept_text(text: str):
-    response = requests.post(f"{ML_API}/from_text?text={text}")
+async def accept_text(text: str, model: GeneratorType = GeneratorType.CHATGPT):
+    response = requests.post(f"{ML_API}/from_text?text={text}&generator_type={model.value}")
     if response.status_code != 200:
         raise HTTPException(
             status_code=response.status_code,
